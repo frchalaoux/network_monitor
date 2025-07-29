@@ -7,13 +7,19 @@
 - De lancer un **daemon** (processus en arrière-plan) qui journalise les coupures.
 - De gérer facilement ce daemon avec `just` sous **Linux / macOS / Git Bash** ou avec **PowerShell** sous Windows natif.
 
+⚠️ **Nouveau** : Les scripts PowerShell Windows (`monitor.ps1`, `stop-monitor.ps1`, `status-monitor.ps1`) gèrent maintenant un vrai démon, avec :
+- Vérification si un PID est déjà actif.
+- Empêche les doubles lancements.
+- Nettoie les fichiers `.monitor.pid` obsolètes.
+- Vérifie le statut réel du processus.
+
 ---
 
 ## 1️⃣ Installation
 
 ### **Prérequis**
 - **Python Astral** (géré via [`uv`](https://astral.sh/uv/))
-- [`just`](https://just.systems) — gestionnaire de commandes
+- [`just`](https://just.systems) — gestionnaire de commandes (pour Linux / macOS / Git Bash)
 - `pip` géré par `uv`
 - Accès à Internet
 
@@ -90,9 +96,9 @@ just stop-monitor
 
 | Script | Description |
 |--------|-------------|
-| `monitor.ps1` | Lance le monitoring réseau en arrière-plan. |
-| `stop-monitor.ps1` | Arrête le monitoring réseau. |
-| `status-monitor.ps1` | Vérifie l’état du monitoring. |
+| `monitor.ps1` | Lance le monitoring réseau en arrière-plan (avec contrôle PID). |
+| `stop-monitor.ps1` | Arrête le monitoring réseau proprement. |
+| `status-monitor.ps1` | Vérifie l’état du monitoring (PID valide / invalide). |
 
 📌 **Exemples** :
 ```powershell
@@ -118,6 +124,6 @@ just stop-monitor
 
 ## 5️⃣ Notes
 - Le monitoring écrit dans `network_monitor.log`.
-- `just monitor` crée `.monitor.pid` pour savoir quel processus arrêter.
+- `just monitor` ou `monitor.ps1` créent `.monitor.pid` pour savoir quel processus arrêter.
 - **Ne pas** utiliser `just run monitor` si vous voulez lancer le daemon.
 - Sous Windows, Git Bash est recommandé pour bénéficier de toutes les commandes `just`.
