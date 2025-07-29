@@ -1,0 +1,13 @@
+[project]
+name = "network-monitor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "datetime>=5.5",
+    "httpx>=0.28.1",
+    "psutil>=7.0.0",
+    "pytest>=8.4.1",
+    "typer>=0.16.0",
+]
