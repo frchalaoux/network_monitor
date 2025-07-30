@@ -9,3 +9,6 @@ wheels/
 # Virtual environments
 .venv
 network_monitor.log
+.monitor.pid
+network_monitor.code-workspace
+.vscode/settings.json
